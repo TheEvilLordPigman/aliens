@@ -1,0 +1,9 @@
+Aliens to-do:
+
+-Make game end after a certain number of aliens escape
+-Make different types of alien eg. fast, heavy
+-Add a scoring system
+-Add buttons on the menu
+-Add a help screen
+-Add a high score table
+-Add a moving background
