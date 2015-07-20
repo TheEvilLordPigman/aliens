@@ -8,7 +8,9 @@
 #include "Star.h"
 
 Star::Star() {
-	setPos(rand() % (SCREEN_WIDTH + 1), 0);
+	collisionBox.w = 20;
+	collisionBox.h = 20;
+	setPos(rand() % SCREEN_WIDTH, 0);
 	texID = T_STARS;
 	int clipNum = 0;
 	clip.x = clipNum * 20;

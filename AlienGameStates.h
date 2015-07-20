@@ -18,6 +18,7 @@
 #include <list>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 enum AlienGameState {
 	AGS_NONE,

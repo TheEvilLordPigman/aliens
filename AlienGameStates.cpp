@@ -139,7 +139,7 @@ void MainState::logic() {
 	//Spawn new aliens if the time is right
 	ticksUntilNextAlien--;
 	if(ticksUntilNextAlien == 0) {
-		int numAliens = rand() % 4;
+		int numAliens = (rand() % 3) + 1;
 		for(int i = 0; i < numAliens; i++) {
 			activeAliens.push_back(Alien((rand() % (SCREEN_WIDTH - 20) + 20), 30));
 		}
@@ -149,6 +149,7 @@ void MainState::logic() {
 	ticksUntilNextStar--;
 	if(ticksUntilNextStar == 0) {
 		activeStars.push_back(Star());
+		//std::cout << activeStars.size() << std::endl;
 		ticksUntilNextStar = STAR_TICK_INTERVAL;
 	}
 }
@@ -202,6 +203,13 @@ void MainState::handleEvent(SDL_Event e) {
 }
 
 void MainState::render() {
+
+	for(std::list<Star>::iterator it = activeStars.begin(); it != activeStars.end(); ++it) {
+		SDL_Rect clip = it->getClip();
+		mainRenderer->render(it->getTextureID(), it->getCollisionBox().x, it->getCollisionBox().y, &clip);
+		//std::cout << "Drew star at " << it->getCollisionBox().x << "," << it->getCollisionBox().y << std::endl;
+	}
+
 	mainRenderer->render(ship.getTextureID(), ship.getCollisionBox().x, ship.getCollisionBox().y);
 	for(std::list<Bullet>::iterator it = activeBullets.begin(); it != activeBullets.end(); ++it) {
 		SDL_Rect clip = it->getClip();
@@ -219,10 +227,6 @@ void MainState::render() {
 		mainRenderer->renderRect(healthBarFrame, grey, false);
 	}
 
-	for(std::list<Star>::iterator it = activeStars.begin(); it != activeStars.end(); ++it) {
-		SDL_Rect clip = it->getClip();
-		mainRenderer->render(it->getTextureID(), it->getCollisionBox().x, it->getCollisionBox().y, &clip);
-	}
 }
 
 

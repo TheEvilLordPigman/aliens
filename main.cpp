@@ -51,7 +51,7 @@ int main(int argc, char* args[]) {
 	if(initSDL()) {
 		Renderer renderer;
 
-		GameState* currentState = new MainState(&renderer);
+		GameState* currentState = new TitleState(&renderer);
 
 		bool quit = false;
 		SDL_Event e;
